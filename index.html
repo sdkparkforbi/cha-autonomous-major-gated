@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자율전공제는 어떻게 성공하는가 — GATED 기반 통합 전략 연구제안서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --navy:#15294d; --navy2:#1f3a6e; --teal:#0e8a7d; --teal-bg:#e7f5f2;
+    --amber:#b8860b; --amber-bg:#fbf3df; --rose:#b23a48; --rose-bg:#fbe9eb;
+    --ink:#1c2230; --muted:#5b6477; --line:#e3e7ef; --paper:#ffffff; --soft:#f6f8fc;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  body{
+    font-family:"Pretendard","Malgun Gothic",sans-serif; color:var(--ink);
+    margin:0; line-height:1.72; font-size:11pt; background:var(--soft);
+    word-break:keep-all;
+  }
+  .page{max-width:820px; margin:0 auto; background:var(--paper); padding:54px 60px;}
+  h1,h2,h3{line-height:1.3; color:var(--navy);}
+  h2{font-size:18.5pt; margin:2.2em 0 .6em; padding-bottom:.28em; border-bottom:3px solid var(--navy); letter-spacing:-.5px;}
+  h2 .num{color:var(--teal); font-weight:800; margin-right:.35em;}
+  h3{font-size:13.5pt; margin:1.5em 0 .4em; color:var(--navy2);}
+  h3::before{content:"▍"; color:var(--teal); margin-right:.3em;}
+  p{margin:.55em 0;}
+  a{color:var(--teal); text-decoration:none;}
+  strong{color:var(--navy2);}
+  em{font-style:normal; background:linear-gradient(transparent 62%, #ffe49b 62%); padding:0 1px; font-weight:600;}
+  .muted{color:var(--muted);}
+  ul,ol{margin:.5em 0 .8em; padding-left:1.25em;}
+  li{margin:.25em 0;}
+
+  /* Cover */
+  .cover{background:linear-gradient(150deg,#15294d 0%,#1f3a6e 55%,#0e8a7d 130%); color:#fff; padding:70px 60px 56px; border-radius:0;}
+  .cover .kicker{font-size:10.5pt; letter-spacing:2px; text-transform:uppercase; opacity:.85; margin-bottom:18px;}
+  .cover h1{color:#fff; font-size:33pt; font-weight:800; letter-spacing:-1.4px; margin:0 0 14px; line-height:1.18;}
+  .cover .sub{font-size:13.5pt; opacity:.95; font-weight:500; line-height:1.55; max-width:680px;}
+  .cover .meta{margin-top:34px; display:flex; flex-wrap:wrap; gap:10px 26px; font-size:10.5pt; opacity:.92;}
+  .cover .meta b{color:#aef0e4; font-weight:700;}
+  .chips{margin-top:26px; display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); padding:5px 12px; border-radius:30px; font-size:9.5pt;}
+
+  /* Callout boxes */
+  .box{border-radius:12px; padding:16px 20px; margin:1.1em 0; border:1px solid var(--line); background:var(--soft);}
+  .box .tag{display:inline-block; font-size:9pt; font-weight:800; letter-spacing:.5px; padding:2px 10px; border-radius:20px; margin-bottom:8px;}
+  .hyp{background:var(--teal-bg); border-color:#bfe6df;}
+  .hyp .tag{background:var(--teal); color:#fff;}
+  .gap{background:var(--rose-bg); border-color:#f0c9cd;}
+  .gap .tag{background:var(--rose); color:#fff;}
+  .dropin{background:repeating-linear-gradient(45deg,#fffdf6,#fffdf6 12px,#fbf3df 12px,#fbf3df 24px); border:2px dashed var(--amber);}
+  .dropin .tag{background:var(--amber); color:#fff;}
+  .key{background:#eef3fb; border-color:#cdd9ee;}
+  .key .tag{background:var(--navy2); color:#fff;}
+  .box h3{margin-top:.2em;}
+  .box.hyp p:last-child, .box.gap p:last-child{margin-bottom:0;}
+
+  /* Tables */
+  table{width:100%; border-collapse:collapse; margin:1em 0; font-size:10pt;}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  thead th{background:var(--navy); color:#fff; font-weight:700; border-color:var(--navy);}
+  tbody tr:nth-child(even){background:var(--soft);}
+  td .arr{color:var(--teal); font-weight:800;}
+  caption{caption-side:bottom; font-size:8.8pt; color:var(--muted); margin-top:6px; text-align:left;}
+
+  /* pipeline diagram */
+  .figwrap{margin:1.3em 0; padding:18px; background:#fff; border:1px solid var(--line); border-radius:12px;}
+  .figcap{font-size:9pt; color:var(--muted); text-align:center; margin-top:8px;}
+
+  .lead{font-size:12pt; color:var(--navy2); font-weight:500;}
+  .readme{background:#0e8a7d; color:#fff; border-radius:12px; padding:16px 22px; margin:22px 0 6px; font-size:10.5pt;}
+  .readme b{color:#fff;}
+  .readme .tag{background:#fff; color:var(--teal); font-weight:800; font-size:9pt; padding:2px 10px; border-radius:20px;}
+
+  .meta-table td:first-child{width:130px; color:var(--muted); background:var(--soft); font-weight:600;}
+  .foot{margin-top:40px; padding-top:14px; border-top:1px solid var(--line); font-size:9pt; color:var(--muted); display:flex; justify-content:space-between;}
+  .refs{font-size:9.5pt; line-height:1.6;}
+  .refs li{margin:.4em 0;}
+  hr.soft{border:none; border-top:1px dashed var(--line); margin:1.6em 0;}
+
+  @page{size:A4; margin:15mm 14mm;}
+  @media print{
+    body{background:#fff; font-size:10.3pt;}
+    .page{max-width:none; margin:0; padding:0;}
+    .cover{border-radius:0; margin:-15mm -14mm 0; padding:46mm 18mm 30mm;}
+    h2{page-break-after:avoid;} h3{page-break-after:avoid;}
+    .box,table,.figwrap{page-break-inside:avoid;}
+    .pb{page-break-before:always;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ COVER ============ -->
+  <header class="cover">
+    <div class="kicker">2026년 고교교육 기여대학 지원사업 · 자율연구 제안서</div>
+    <h1>자율전공제는<br>어떻게 성공하는가</h1>
+    <div class="sub">생성형 AI 지식그래프(GATED)로 설계하는<br>차 의과학대학교 자율전공 <b>평가지표·운영모델 통합 전략</b></div>
+    <div class="chips">
+      <span class="chip">소주제 1 · 자율전공 학종 평가지표 개선</span>
+      <span class="chip">소주제 2 · 전공자율선택제 운영모델</span>
+      <span class="chip">방법 · GATED 지식그래프 파이프라인</span>
+    </div>
+    <div class="meta">
+      <span><b>연구기간</b> 2026.9 ~ 2027.2 (6개월)</span>
+      <span><b>대상</b> 글로벌미래인재대학(자율전공)</span>
+      <span><b>버전</b> Draft v0.9 · 2026.06</span>
+    </div>
+  </header>
+
+  <div class="readme">
+    <span class="tag">이 문서를 읽는 법</span>
+    &nbsp;이건 <b>제안서</b>입니다. 그래서 <b>「결과」와 「결론」은 아직 일어나지 않은 일</b>이라, 우리가 세운 가설이 맞다면
+    어떤 그림이 나올지를 <b>예상치</b>로 적어 두었습니다. 점선 빗금 박스(<b>📦 DROP-IN</b>)가 그 자리입니다.
+    연구가 끝나 실제 수치가 나오면 <b>그 박스만 갈아끼우면</b> 그대로 최종 보고서가 됩니다.
+  </div>
+
+  <!-- ============ 1. 프롤로그 ============ -->
+  <h2><span class="num">1.</span>프롤로그 — 왜 지금, 자율전공인가</h2>
+  <p class="lead">대학 입시의 판이 동시에 두 번 흔들리고 있다. 하나는 <em>전공의 벽이 허물어지는 것</em>(무전공·전공자율선택제 확대),
+  다른 하나는 <em>성적의 잣대가 뭉툭해지는 것</em>(2028 대입개편의 내신 5등급제·통합형 수능)이다.</p>
+
+  <p>교육부는 2025학년도부터 <strong>전공자율선택제(무전공)</strong>를 본격 확대하며, 모집정원의 일정 비율 이상을 자율전공으로
+  운영하는 대학에 재정지원사업 인센티브를 연계했다. 제도는 크게 두 갈래다.</p>
+  <ul>
+    <li><strong>유형Ⅰ</strong> — 전공을 정하지 않고 입학해 보건·의료·사범 등 일부를 제외한 <em>전 전공을 자유 선택</em></li>
+    <li><strong>유형Ⅱ</strong> — 계열·단과대학 단위로 모집한 뒤 <em>그 안에서 전공을 선택</em>(쏠림을 구조적으로 완충)</li>
+  </ul>
+
+  <p>동시에 2028 대입개편으로 <strong>내신은 9등급→5등급</strong>으로 완화되고 수능은 통합·융합형으로 재편된다.
+  정량지표의 변별력이 약해질수록, <em>"무엇을 보고 뽑을 것인가"</em>라는 정성평가(학생부종합전형)의 책무는 오히려 커진다.
+  그런데 — 바로 여기서 문제가 생긴다. <strong>자율전공에는 아직 "자율전공에 맞는 잣대"가 없다.</strong></p>
+
+  <div class="box key">
+    <span class="tag">CHA의 자리</span>
+    <p style="margin:0">차 의과학대학교는 <strong>보건의료 특성화</strong> 대학이면서 동시에 <strong>글로벌미래인재대학</strong>이라는
+    자율전공 단위를 운영한다. 즉 "전공을 늦게 정하는 학생"과 "전문성이 강한 보건의료 트랙"을 한 지붕 아래 정합시켜야 하는,
+    가장 어려우면서도 가장 흥미로운 실험장이다. 이 연구는 그 정합의 설계도를 그린다.</p>
+  </div>
+
+  <!-- ============ 2. 문제 정의 ============ -->
+  <h2><span class="num">2.</span>풀어야 할 문제 — "잘 뽑아도 무너지는" 구조</h2>
+  <p>자율전공제가 실패하는 방식은 의외로 정형적이다. 좋은 학생을 뽑아도(입구), 운영(과정)이 못 받쳐서
+  <em>인기학과 쏠림 → 부적응 → 중도탈락</em>의 경로로 무너진다. 우리는 이 문제를 <strong>입구–과정–출구의 정합성 붕괴</strong>로 정의한다.</p>
+
+  <table>
+    <caption>표 1. 자율전공제 실패의 3대 지점과 본 연구의 질문</caption>
+    <thead><tr><th style="width:90px">단계</th><th>전형적 실패 양상</th><th>핵심 질문</th><th>해당 소주제</th></tr></thead>
+    <tbody>
+      <tr><td><b>입구</b><br>(선발)</td><td>자율전공에 맞는 인재를 변별할 잣대 부재 → 일반 학종 기준 답습</td><td>무엇을 보고 뽑아야 전공탐색에 성공하는가?</td><td>소주제 1</td></tr>
+      <tr><td><b>과정</b><br>(운영)</td><td>전공 무제한 선택이 <span class="arr">→</span> 인기학과 쏠림 <span class="arr">→</span> 비인기 전공 붕괴</td><td>어떤 운영장치가 쏠림·부적응을 막는가?</td><td>소주제 2</td></tr>
+      <tr><td><b>출구</b><br>(성과)</td><td>전공배정 불만족·중도탈락이 지표로 환류되지 않음</td><td>성공을 무엇으로 측정·환류할 것인가?</td><td>공통</td></tr>
+    </tbody>
+  </table>
+
+  <p>비유하자면, 이건 우리 연구진이 다뤄 온 <strong>단백질 안정성 문제와 똑 닮았다</strong>. 고농도 항체에서
+  분자들이 비정상적으로 뭉치는 <em>응집(aggregation)</em>이 약을 망치듯, 자율전공에서는 학생들이 인기학과로 뭉치는
+  <em>"쏠림"</em>이 제도를 망친다. 무엇이 뭉침을 촉진하고(promote) 무엇이 억제하는지(inhibit), 그 <strong>인과 네트워크</strong>를
+  읽어내면 개입 지점이 보인다. 우리는 항체에서 쓰던 그 렌즈를 입시에 들이댄다.</p>
+
+  <!-- ============ 3. 연구질문 & 가설 ============ -->
+  <h2><span class="num">3.</span>연구질문에서 가설로</h2>
+  <p>위 문제를 검증 가능한 형태로 벼리면 다음 가설이 된다. 모든 가설은 뒤에 설명할 <strong>지식그래프(KG)</strong> 위에서
+  엣지(관계)의 방향·강도, 또는 <strong>GATED 모델</strong>의 예측력으로 <em>증명되거나 반증된다</em>.</p>
+
+  <div class="box hyp">
+    <span class="tag">H1 · 쏠림 메커니즘</span>
+    <p>전공 무제한 선택(유형Ⅰ)은 인기학과 쏠림을 <strong>촉진</strong>하며, 이는 지식그래프에서 강한 양(+)의 인과 엣지로
+    나타날 것이다. 반면 계열단위 모집(유형Ⅱ)·정원쿼터는 쏠림을 <strong>억제</strong>하는 엣지로 나타난다.</p>
+  </div>
+  <div class="box hyp">
+    <span class="tag">H2 · 완충 장치의 허브성</span>
+    <p>전공탐색학기·진로설계·멘토링은 부적응·중도탈락을 억제하는 <strong>허브(hub) 노드</strong>로 작동할 것이다.
+    즉 네트워크 중심성(centrality)이 높아, 적은 비용으로 큰 효과를 내는 <em>레버리지 지점</em>이다.</p>
+  </div>
+  <div class="box hyp">
+    <span class="tag">H3 · 선발–성과 연결 (소주제 1의 핵심)</span>
+    <p>입학단계에서 측정 가능한 특성 — <strong>자기주도성·전공탐색역량·계열적합성·성장지향성</strong> — 은 전공적응·만족과
+    <strong>인과적으로 연결</strong>된다. 따라서 이 특성들이 곧 자율전공 학종 평가지표의 핵심 축이 되어야 한다.</p>
+  </div>
+  <div class="box hyp">
+    <span class="tag">H4 · 예측가능성</span>
+    <p>GATED 모델은 "선발 특성 + 운영 조건"으로부터 성과(적응/중도탈락) 노드를 <strong>기준선(baseline) 대비 유의하게 높은
+    정확도</strong>로 예측할 것이다. 이 예측력은 평가지표 <em>가중치 산정의 정량 근거</em>가 된다.</p>
+  </div>
+
+  <!-- ============ 4. 선행연구 & 한계 ============ -->
+  <h2><span class="num">4.</span>선행연구를 보면 — 그리고 그 한계</h2>
+  <p>세 갈래의 선행연구가 있다. 각각 값지지만, 셋 다 <em>같은 방 안의 코끼리</em>를 놓치고 있다.</p>
+
+  <h3>4.1 입학전형·평가지표 연구</h3>
+  <p>학생부종합전형의 평가요소(학업역량·진로역량·공동체역량)와 타당화 연구는 풍부하다. 그러나 대부분
+  <strong>일반학과 기준</strong>이며, "전공을 아직 안 정한 학생"을 어떻게 평가할지에 대한 <em>자율전공 특화 지표는 사실상 공백</em>이다.</p>
+
+  <h3>4.2 무전공·전공자율선택제 연구</h3>
+  <p>제도 소개와 찬반(쏠림 우려 vs 진로탐색 기회)이 활발하다. 하지만 대개 <strong>정책 논평·단면 설문</strong>에 머물러,
+  "무엇이 무엇을 일으키는가"라는 <em>인과 구조</em>를 데이터로 규명한 연구는 드물다.</p>
+
+  <h3>4.3 방법론</h3>
+  <p>입학 연구의 주력은 <strong>델파이·소표본 설문</strong>이다. 신뢰도는 있으나 담론 <em>전체</em>를 보지 못하고, 연구자 표본의
+  편향에 갇히며, 시의성이 떨어진다. 수백~수천 건의 뉴스·논문을 <strong>구조화된 지식그래프로 종합</strong>한 시도는 입학 분야에 거의 없다.</p>
+
+  <div class="box gap">
+    <span class="tag">연구 공백 (GAP)</span>
+    <p><strong>① 자율전공 특화 평가지표의 부재</strong>, <strong>② 자율전공 성패의 인과 구조 미규명</strong>,
+    <strong>③ 대규모 텍스트·지식그래프 방법론의 미적용</strong>. 이 셋을 한 번에 메우는 것이 본 연구의 자리다.</p>
+  </div>
+
+  <!-- ============ 5. 전략·방법 ============ -->
+  <h2 class="pb"><span class="num">5.</span>우리의 전략 — GATED를 입시에 이식한다</h2>
+  <p>본 연구진은 수만 건의 <strong>PubMed 초록에서 항체 안정성의 인과 지식그래프를 자동 구축</strong>하고, 그 위에서
+  <strong>GATED(Graph-Aware Transformer with Encoder-Decoder)</strong> 모델로 핵심 인자를 예측하는 파이프라인을 개발했다
+  (mAb-GATED, ISMB 2026 채택). <em>같은 엔진을, 분자 대신 입시 담론에 돌린다.</em></p>
+
+  <div class="figwrap">
+    <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;" font-family="Pretendard, Malgun Gothic, sans-serif">
+      <defs>
+        <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#0e8a7d"/></marker>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#1f3a6e"/><stop offset="1" stop-color="#0e8a7d"/>
+        </linearGradient>
+      </defs>
+      <!-- step boxes -->
+      <g>
+        <rect x="8"   y="60" width="150" height="92" rx="10" fill="#eef3fb" stroke="#cdd9ee"/>
+        <rect x="190" y="60" width="150" height="92" rx="10" fill="#eef3fb" stroke="#cdd9ee"/>
+        <rect x="372" y="60" width="150" height="92" rx="10" fill="#e7f5f2" stroke="#bfe6df"/>
+        <rect x="554" y="60" width="150" height="92" rx="10" fill="#15294d" stroke="#15294d"/>
+      </g>
+      <!-- step labels -->
+      <text x="83"  y="50" text-anchor="middle" font-size="12" font-weight="800" fill="#0e8a7d">STEP 1</text>
+      <text x="265" y="50" text-anchor="middle" font-size="12" font-weight="800" fill="#0e8a7d">STEP 2</text>
+      <text x="447" y="50" text-anchor="middle" font-size="12" font-weight="800" fill="#0e8a7d">STEP 3</text>
+      <text x="629" y="50" text-anchor="middle" font-size="12" font-weight="800" fill="#0e8a7d">STEP 4</text>
+
+      <text x="83"  y="92"  text-anchor="middle" font-size="12.5" font-weight="700" fill="#15294d">대량 수집</text>
+      <text x="83"  y="114" text-anchor="middle" font-size="9.5" fill="#5b6477">뉴스 API · KCI</text>
+      <text x="83"  y="130" text-anchor="middle" font-size="9.5" fill="#5b6477">OpenAPI</text>
+
+      <text x="265" y="92"  text-anchor="middle" font-size="12.5" font-weight="700" fill="#15294d">관련성 필터링</text>
+      <text x="265" y="114" text-anchor="middle" font-size="9.5" fill="#5b6477">GPT 스크리닝</text>
+      <text x="265" y="130" text-anchor="middle" font-size="9.5" fill="#5b6477">근거 1줄 기록</text>
+
+      <text x="447" y="92"  text-anchor="middle" font-size="12.5" font-weight="700" fill="#0e8a7d">관계 추출·KG</text>
+      <text x="447" y="114" text-anchor="middle" font-size="9.5" fill="#5b6477">(원인,관계,결과)</text>
+      <text x="447" y="130" text-anchor="middle" font-size="9.5" fill="#5b6477">정규화·집계</text>
+
+      <text x="629" y="92"  text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffffff">GATED 추론</text>
+      <text x="629" y="114" text-anchor="middle" font-size="9.5" fill="#aef0e4">허브·예측</text>
+      <text x="629" y="130" text-anchor="middle" font-size="9.5" fill="#aef0e4">MRR/Hits@k</text>
+
+      <!-- arrows -->
+      <line x1="158" y1="106" x2="186" y2="106" stroke="#0e8a7d" stroke-width="2.5" marker-end="url(#ah)"/>
+      <line x1="340" y1="106" x2="368" y2="106" stroke="#0e8a7d" stroke-width="2.5" marker-end="url(#ah)"/>
+      <line x1="522" y1="106" x2="550" y2="106" stroke="#0e8a7d" stroke-width="2.5" marker-end="url(#ah)"/>
+
+      <!-- triplet example -->
+      <rect x="8" y="196" width="696" height="86" rx="10" fill="#fff" stroke="#e3e7ef"/>
+      <text x="24" y="220" font-size="10.5" font-weight="700" fill="#15294d">추출되는 인과 triplet 예시 (자율전공 도메인)</text>
+      <g font-size="10.5">
+        <rect x="24"  y="232" width="150" height="26" rx="13" fill="#fbe9eb" stroke="#f0c9cd"/>
+        <text x="99" y="249" text-anchor="middle" fill="#b23a48">무전공 유형Ⅰ</text>
+        <text x="186" y="249" text-anchor="middle" fill="#0e8a7d" font-weight="800">촉진→</text>
+        <rect x="214" y="232" width="150" height="26" rx="13" fill="#fbe9eb" stroke="#f0c9cd"/>
+        <text x="289" y="249" text-anchor="middle" fill="#b23a48">인기학과 쏠림</text>
+
+        <rect x="392" y="232" width="150" height="26" rx="13" fill="#e7f5f2" stroke="#bfe6df"/>
+        <text x="467" y="249" text-anchor="middle" fill="#0e8a7d">전공탐색학기</text>
+        <text x="554" y="249" text-anchor="middle" fill="#0e8a7d" font-weight="800">억제→</text>
+        <rect x="582" y="232" width="122" height="26" rx="13" fill="#e7f5f2" stroke="#bfe6df"/>
+        <text x="643" y="249" text-anchor="middle" fill="#0e8a7d">중도탈락</text>
+      </g>
+      <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="800" fill="#15294d">GATED 파이프라인: 비정형 텍스트 → 인과 지식그래프 → 그래프 추론</text>
+    </svg>
+    <div class="figcap">그림 1. mAb 안정성에 적용된 4단계 GATED 파이프라인을 자율전공제 담론 분석으로 이식</div>
+  </div>
+
+  <table>
+    <caption>표 2. GATED 파이프라인의 도메인 이식 (항체 → 자율전공)</caption>
+    <thead><tr><th style="width:70px">단계</th><th>원본 (mAb 안정성)</th><th>본 연구 (자율전공제)</th></tr></thead>
+    <tbody>
+      <tr><td><b>수집</b></td><td>PubMed E-utilities (126 질의)</td><td><strong>뉴스 API</strong>(BigKinds 등) + <strong>KCI OpenAPI</strong>·RISS — 무전공·자율전공·전공자율선택제 담론</td></tr>
+      <tr><td><b>필터링</b></td><td>GPT-4o-mini 관련성 판정</td><td>제도 운영·평가·성과의 <em>실질 내용</em>만 잔류, 판정 근거 1줄 저장(감사추적)</td></tr>
+      <tr><td><b>관계추출</b></td><td>(열스트레스→촉진→응집)</td><td>(유형Ⅰ→촉진→쏠림), (탐색학기→억제→중도탈락), (자기주도성→향상→적응)</td></tr>
+      <tr><td><b>지식그래프</b></td><td>16,019 인과 엣지</td><td>자율전공 <strong>성공요인 ↔ 문제 ↔ 해법</strong> 인과 네트워크</td></tr>
+      <tr><td><b>GATED</b></td><td>안정성 허브(응집) 예측</td><td><strong>최고 레버리지 개입점 = 전략 우선순위</strong> 도출, 선발특성→성과 예측</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.1 전략이 산출하는 두 결과물</h3>
+  <ul>
+    <li><strong>소주제 1 — 평가지표(안):</strong> KG가 "전공성공과 인과로 연결된 입학생 특성"을 드러내면, 그 노드들이 곧 평가요소가 된다.
+    GATED의 예측 기여도로 <em>가중치</em>까지 추정해 델파이/AHP와 교차검증한다.</li>
+    <li><strong>소주제 2 — 운영모델(안):</strong> 허브·중심성 분석이 "무엇부터 손대야 성공하는가"를 정량 제시한다.
+    타대학 사례는 KG의 <em>근거 엣지</em>로 편입되어, 인상비평이 아니라 데이터로 벤치마킹된다.</li>
+  </ul>
+
+  <!-- ============ 6. 검증 설계 ============ -->
+  <h2><span class="num">6.</span>그래서 이 전략이 맞다는 걸 어떻게 증명하나</h2>
+  <p>전략은 주장이 아니라 <em>검증 가능한 설계</em>여야 한다. 세 겹의 증명을 둔다.</p>
+  <table>
+    <caption>표 3. 가설–검증 매핑</caption>
+    <thead><tr><th>층위</th><th>방법</th><th>판정 기준</th><th>검증 가설</th></tr></thead>
+    <tbody>
+      <tr><td><b>내적</b><br>(그래프)</td><td>엣지 빈도·출처수, 허브 중심성(degree·betweenness)</td><td>핵심 엣지가 통계적으로 우세 / 완충장치가 상위 허브</td><td>H1, H2</td></tr>
+      <tr><td><b>모델</b><br>(예측)</td><td>GATED vs 빈도기반·DistMult baseline</td><td>MRR·Hits@k에서 baseline 유의 상회</td><td>H4</td></tr>
+      <tr><td><b>외적</b><br>(전문가)</td><td>입학사정관·전문가 델파이/AHP, 가중치 비교</td><td>KG 도출 지표와 전문가 합의의 수렴(κ·CR)</td><td>H3</td></tr>
+      <tr><td><b>적용</b><br>(파일럿)</td><td>글로벌미래인재대학 기존 데이터로 후향 모의평가</td><td>지표 적용 시 성과 구분력 향상</td><td>H3, H4</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ============ 7. 예상 결과 ============ -->
+  <h2 class="pb"><span class="num">7.</span>(예상) 결과 — 결과가 나오면 갈아끼울 자리</h2>
+  <p class="muted">아래 수치·표는 모두 <strong>가설이 옳을 경우의 예상치</strong>다. 실제 분석이 끝나면 이 박스들만 교체한다.</p>
+
+  <div class="box dropin">
+    <span class="tag">📦 DROP-IN · 7.1 지식그래프 규모</span>
+    <p>뉴스·논문 <strong>약 3,000±건</strong> 수집 → 관련성 필터링 후 <strong>약 1,200±건</strong> 잔류 →
+    <strong>노드 ~1,500 / 인과 엣지 ~6,000±</strong> 규모의 자율전공 지식그래프 구축 <span class="muted">(예상치)</span>.</p>
+  </div>
+
+  <div class="box dropin">
+    <span class="tag">📦 DROP-IN · 7.2 허브 분석 (전략 우선순위)</span>
+    <table style="margin:.4em 0">
+      <thead><tr><th>순위(예상)</th><th>허브 노드</th><th>해석</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>전공탐색·진로설계 지원</td><td>최대 레버리지 — 부적응·중도탈락을 가장 널리 억제</td></tr>
+        <tr><td>2</td><td>인기학과 쏠림</td><td>최대 위험 허브 — 가장 많은 부정 엣지의 근원</td></tr>
+        <tr><td>3</td><td>전공적응·만족(성과)</td><td>모든 경로가 수렴하는 출구 지표</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:.2em 0 0" class="muted">※ 실제 중심성 산출 후 순위·노드 교체</p>
+  </div>
+
+  <div class="box dropin">
+    <span class="tag">📦 DROP-IN · 7.3 GATED 예측 성능</span>
+    <p>성과 노드 예측에서 GATED <strong>MRR ≈ 0.8x</strong>, <strong>Hits@3 ≈ 0.9x</strong>로 빈도기반·DistMult baseline을
+    <strong>20%+ 상회</strong>할 것으로 예상 <span class="muted">(mAb-GATED 전례: MRR 0.895)</span>. → H4 지지.</p>
+  </div>
+
+  <div class="box dropin">
+    <span class="tag">📦 DROP-IN · 7.4 자율전공 평가지표(안) — 소주제 1</span>
+    <table style="margin:.4em 0">
+      <thead><tr><th>평가요소(예상)</th><th>서류 신호</th><th>면접 확인</th><th>가중(예상)</th></tr></thead>
+      <tbody>
+        <tr><td><b>전공탐색역량</b></td><td>다전공·융합 활동, 탐색 이력</td><td>탐색의 깊이·전환의 논리</td><td>30%</td></tr>
+        <tr><td><b>자기주도성</b></td><td>스스로 설계한 학습·프로젝트</td><td>의사결정 근거·실행력</td><td>25%</td></tr>
+        <tr><td><b>계열적합성</b></td><td>보건의료·융합 계열 기초</td><td>CHA 트랙 정합성</td><td>25%</td></tr>
+        <tr><td><b>성장지향성</b></td><td>실패·전환에서의 성장</td><td>회복탄력성·개방성</td><td>20%</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:.2em 0 0" class="muted">※ 가중치는 GATED 기여도 + 델파이/AHP 수렴값으로 확정 후 교체</p>
+  </div>
+
+  <div class="box dropin">
+    <span class="tag">📦 DROP-IN · 7.5 CHA형 운영모델(안) — 소주제 2</span>
+    <p>유형Ⅱ(계열단위) 기반 + <strong>1학기 전공탐색 트랙 → 데이터 기반 전공배정 → 멘토링 안전망</strong>의 3중 구조 제안.
+    쏠림 완화 장치(정원 유연쿼터·탐색성과 반영)와 성과관리 KPI(전공만족·중도탈락·배정충족률) 포함 <span class="muted">(상세안은 결과로 교체)</span>.</p>
+  </div>
+
+  <!-- ============ 8. 가치 & 향후 ============ -->
+  <h2><span class="num">8.</span>이 연구의 가치와 향후 연구</h2>
+  <h3>8.1 기대효과</h3>
+  <ul>
+    <li><strong>정책 기여:</strong> 자율전공 평가·운영을 <em>인상</em>이 아니라 <em>인과 데이터</em>로 설계 — 재현 가능·갱신 가능.</li>
+    <li><strong>CHA 적용:</strong> 글로벌미래인재대학에 즉시 이식 가능한 평가지표(안)·운영모델(안) 산출.</li>
+    <li><strong>방법론 신규성:</strong> 입학 연구에 지식그래프·그래프 신경망을 도입한 국내 첫 사례급 — <em>논문화 발판</em>.</li>
+  </ul>
+  <h3>8.2 향후 연구</h3>
+  <ul>
+    <li>타 전형(교과·논술)·타 단위로 파이프라인 확장, <strong>매년 갱신되는 살아있는 KG</strong> 운영.</li>
+    <li>합격–입학–성과 데이터를 연결한 <strong>"입학 Foundation Model"</strong> 비전 — 항체의 Foundation Model 구상을 입시로.</li>
+    <li>예측 결과의 <strong>윤리·공정성</strong> 검토(편향·설명가능성)를 상시 트랙으로 병행.</li>
+  </ul>
+
+  <div class="box key">
+    <span class="tag">한 줄 요약</span>
+    <p style="margin:0">자율전공제의 성패는 <strong>입구·과정·출구의 정합</strong>에 달려 있고, 우리는 그 정합을
+    <strong>뉴스·논문에서 자동 추출한 인과 지식그래프(GATED)</strong>로 설계·검증한다. 평가지표(소주제1)와 운영모델(소주제2)이
+    하나의 엔진에서 동시에 나온다.</p>
+  </div>
+
+  <!-- ============ 부록: 일정/예산 ============ -->
+  <h2><span class="num">9.</span>추진 일정 · 예산 개요</h2>
+  <table>
+    <caption>표 4. 6개월 추진 일정 (2026.9 ~ 2027.2)</caption>
+    <thead><tr><th>월</th><th>9월</th><th>10월</th><th>11월</th><th>12월</th><th>1월</th><th>2월</th></tr></thead>
+    <tbody>
+      <tr><td><b>과업</b></td><td>수집·필터링 설계</td><td>KG 구축</td><td>GATED 학습·허브분석</td><td>중간보고·델파이</td><td>지표·운영모델 확정</td><td>파일럿·최종보고</td></tr>
+    </tbody>
+  </table>
+  <table class="meta-table">
+    <tbody>
+      <tr><td>총 예산</td><td>소주제별 13,000천원 (동시 수행 시 통합 계획) · 인건비 60% 이내</td></tr>
+      <tr><td>연구진</td><td>연구책임자(박사) + 공동연구원(입학사정관 포함) + 연구보조원(통계·데이터) <span class="muted">— 구성(안)은 발주계획에 근거하여 확정</span></td></tr>
+      <tr><td>산출물</td><td>지식그래프 · 평가지표(안) · 운영모델(안) · 학술논문 1편</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ============ 참고문헌 ============ -->
+  <h2><span class="num">10.</span>참고문헌</h2>
+  <p class="muted" style="font-size:9.5pt">※ 본 연구의 실증 문헌 코퍼스(뉴스·논문 수백~수천 건)는 <strong>STEP 1 수집 단계에서 자동 생성</strong>되며,
+  최종 보고서에 전수 목록으로 부록 수록된다. 아래는 방법론·정책 토대 문헌이다.</p>
+  <ol class="refs">
+    <li>교육부 (2023). <em>2028 대학입시제도 개편 확정안</em>. 세종: 교육부.</li>
+    <li>교육부 (2024). <em>2025학년도 대학혁신지원사업 및 전공자율선택(무전공) 확대 추진 방안</em>. 세종: 교육부.</li>
+    <li>Lee, G. S., Choi, H. G., Park, J. H., Kim, H. Y., &amp; Park, D. K. (2026). <em>A Generative AI-Extracted Mechanistic Knowledge Graph for mAb Stability: Construction, Analysis, and Prediction with mAb-GATED</em>. Briefings in Bioinformatics (ISMB 2026, BOKR track).</li>
+    <li>박윤미, 박인우, 서정완, 서혜령, 박대근 (2025). <em>생성형 AI–인간 협업 기반 메타분석 절차의 설계와 적용</em>. 디지털예술공학멀티미디어논문지.</li>
+    <li>Veličković, P., et al. (2018). <em>Graph Attention Networks</em>. ICLR.</li>
+    <li>Vaswani, A., et al. (2017). <em>Attention Is All You Need</em>. NeurIPS.</li>
+    <li>한국대학교육협의회 (2026). <em>고교교육 기여대학 지원사업 연구관리 가이드라인</em>.</li>
+  </ol>
+
+  <div class="foot">
+    <span>차 의과학대학교 · 글로벌미래인재대학 자율전공 연구</span>
+    <span>GATED 기반 통합 전략 · Draft v0.9</span>
+  </div>
+
+</div>
+</body>
+</html>
