@@ -6,6 +6,7 @@ HERE = pathlib.Path(__file__).parent
 html = (HERE / "index.html").resolve().as_uri()
 pdf_out = HERE / "자율전공_GATED_연구제안서.pdf"
 thumb_out = HERE / "thumbnail.png"
+og_out = HERE / "og-image.png"
 
 with sync_playwright() as p:
     b = p.chromium.launch()
@@ -24,7 +25,15 @@ with sync_playwright() as p:
     time.sleep(0.8)
     pg.set_viewport_size({"width": 1000, "height": 1300})
     pg.screenshot(path=str(thumb_out), clip={"x": 0, "y": 0, "width": 1000, "height": 1300})
+
+    # OG image (landscape cover) for KakaoTalk / social link preview
+    pg.set_viewport_size({"width": 1200, "height": 760})
+    pg.goto(html, wait_until="networkidle")
+    time.sleep(0.6)
+    cover = pg.query_selector("header.cover")
+    cover.screenshot(path=str(og_out))
     b.close()
 
 print("PDF  :", pdf_out, pdf_out.stat().st_size, "bytes")
 print("THUMB:", thumb_out, thumb_out.stat().st_size, "bytes")
+print("OG   :", og_out, og_out.stat().st_size, "bytes")
