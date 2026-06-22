@@ -115,7 +115,8 @@
     <div class="chips">
       <span class="chip">소주제 1 · 자율전공 학종 평가지표 개선</span>
       <span class="chip">소주제 2 · 전공자율선택제 운영모델</span>
-      <span class="chip">방법 · GATED 지식그래프 파이프라인</span>
+      <span class="chip">방법 · 혼합연구: 문헌·뉴스·설문·전문가</span>
+      <span class="chip">텍스트 종합 엔진 · GATED 지식그래프</span>
     </div>
     <div class="meta">
       <span><b>연구기간</b> 2026.9 ~ 2027.2 (6개월)</span>
@@ -202,6 +203,11 @@
     <p>GATED 모델은 "선발 특성 + 운영 조건"으로부터 성과(적응/중도탈락) 노드를 <strong>기준선(baseline) 대비 유의하게 높은
     정확도</strong>로 예측할 것이다. 이 예측력은 평가지표 <em>가중치 산정의 정량 근거</em>가 된다.</p>
   </div>
+  <div class="box hyp">
+    <span class="tag">H5 · 현장 정합성 (설문)</span>
+    <p>문헌·뉴스에서 도출된 평가요소는 <strong>고교 현장(학생·교사)이 중요하게 보는 요소</strong>와 유의하게 일치할 것이며,
+    불일치 영역은 평가지표 보정의 단서가 된다.</p>
+  </div>
 
   <!-- ============ 4. 선행연구 & 한계 ============ -->
   <h2><span class="num">4.</span>선행연구를 보면 — 그리고 그 한계</h2>
@@ -226,10 +232,29 @@
   </div>
 
   <!-- ============ 5. 전략·방법 ============ -->
-  <h2 class="pb"><span class="num">5.</span>우리의 전략 — GATED를 입시에 이식한다</h2>
-  <p>본 연구진은 수만 건의 <strong>PubMed 초록에서 항체 안정성의 인과 지식그래프를 자동 구축</strong>하고, 그 위에서
-  <strong>GATED(Graph-Aware Transformer with Encoder-Decoder)</strong> 모델로 핵심 인자를 예측하는 파이프라인을 개발했다
-  (mAb-GATED, ISMB 2026 채택). <em>같은 엔진을, 분자 대신 입시 담론에 돌린다.</em></p>
+  <h2 class="pb"><span class="num">5.</span>우리의 전략 — 네 갈래 증거를 삼각검증하는 혼합연구</h2>
+  <p class="lead">자율전공제처럼 이해관계자가 많고 변수가 얽힌 문제는 <em>한 가지 방법으로 풀리지 않는다.</em>
+  본 연구는 <strong>문헌 · 뉴스 · 현장 설문 · 전문가</strong> 네 갈래 증거를 모아 교차검증(triangulation)하는
+  <strong>혼합연구방법(mixed methods)</strong>을 채택한다. "성공적인 자율전공제"를 위한 대안을 폭넓게 펼쳐 놓고,
+  네 증거가 <em>공통으로 가리키는 답</em>을 찾는다.</p>
+
+  <h3>5.1 연구설계 — 네 갈래 증거와 통합(삼각검증)</h3>
+  <div class="box key">
+    <span class="tag">EVIDENCE × 4</span>
+    <p style="margin:.2em 0; line-height:1.9">
+    <b>A. 학술 문헌</b> (KCI·PubMed 논문) — <b>GATED 지식그래프</b>로 검증된 성공·실패 요인의 인과 구조<br>
+    <b>B. 뉴스·미디어</b> (BigKinds 등) — <b>GATED 지식그래프</b>로 정책·여론·현장 쟁점의 최신 동향<br>
+    <b>C. 현장 설문</b> — <b>고등학생 · 고교 진학교사</b>(+재학생·입학사정관) 대상, 수요자가 보는 평가요소·선호·우려<br>
+    <b>D. 전문가·사례</b> — 델파이/AHP·타대학 사례로 지표 가중치 합의·운영모델 벤치마킹</p>
+    <p style="margin:.5em 0 0"><b>→ 통합:</b> 네 증거를 <b>삼각검증</b>해 공통으로 가리키는 신호만 채택 → 평가지표(안)·운영모델(안) 도출</p>
+  </div>
+  <p>핵심은 <strong>어느 하나에 의존하지 않는 것</strong>이다. 문헌·뉴스(A·B)가 "무엇이 자율전공을 성공시키는가"의 가설을 주면,
+  현장 설문(C)이 그것을 <em>고교 수요자의 눈</em>으로 검증하고, 전문가(D)가 <em>실행 가능한 우선순위</em>로 다듬는다.</p>
+
+  <h3>5.2 문헌·뉴스 분석 엔진 — GATED</h3>
+  <p>증거원 A·B의 방대한 텍스트(논문+뉴스 수천 건)를 사람이 다 읽을 수는 없다. 이를 <strong>인과 지식그래프</strong>로 종합하는 것이
+  본 연구진의 <strong>GATED(Graph-Aware Transformer with Encoder-Decoder)</strong> 파이프라인이다. 수만 건의 PubMed 초록에서
+  항체 안정성의 인과 그래프를 자동 구축한 그 엔진(mAb-GATED, ISMB 2026 채택)을, <em>분자 대신 자율전공 담론에 돌린다.</em></p>
 
   <div class="figwrap">
     <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;" font-family="Pretendard, Malgun Gothic, sans-serif">
@@ -306,7 +331,20 @@
     </tbody>
   </table>
 
-  <h3>5.1 전략이 산출하는 두 결과물</h3>
+  <h3>5.3 현장의 목소리 — 고등학생·교사 설문</h3>
+  <p>텍스트(문헌·뉴스)가 말하는 성공요인이 <em>정작 고교 현장의 수요와 맞는지</em>는 직접 물어야 안다. 본 연구는 실제 설문을 수행한다.</p>
+  <ul>
+    <li><b>대상</b> — 고등학생(자율전공 지원 잠재층) · 고교 진학지도 교사 · (보조: CHA 자율전공 재학생 · 입학사정관)</li>
+    <li><b>내용</b> — 자율전공 인식·선호, 전공탐색 경험, <b>평가요소 중요도</b>(자기주도성·전공탐색역량·계열적합성·성장지향성), 우려(쏠림·진로불안)</li>
+    <li><b>표본·분석</b> — 지역·계열 안배 표집, 기술통계 + 요인분석/신뢰도, 중요도–수행도 분석(IPA), 집단(학생 vs 교사) 비교</li>
+    <li><b>역할</b> — 텍스트에서 도출한 평가요소를 <b>현장 수요로 검증·보정</b>하고, 서류·면접 평가지표의 우선순위 근거 제공</li>
+  </ul>
+
+  <h3>5.4 전문가 델파이·AHP + 타대학 사례</h3>
+  <p>마지막으로 입학사정관·교육 전문가 패널의 <b>델파이</b>로 평가지표를 정련하고 <b>AHP</b>로 가중치를 산정하며, 무전공 선도대학의
+  운영 사례를 비교해 <b>CHA에 실행 가능한 모델</b>로 옮긴다. (타대학 사례는 증거원 A·B의 지식그래프에도 근거 엣지로 편입된다.)</p>
+
+  <h3>5.5 전략이 산출하는 두 결과물</h3>
   <ul>
     <li><strong>소주제 1 — 평가지표(안):</strong> KG가 "전공성공과 인과로 연결된 입학생 특성"을 드러내면, 그 노드들이 곧 평가요소가 된다.
     GATED의 예측 기여도로 <em>가중치</em>까지 추정해 델파이/AHP와 교차검증한다.</li>
@@ -324,6 +362,7 @@
       <tr><td><b>내적</b><br>(그래프)</td><td>엣지 빈도·출처수, 허브 중심성(degree·betweenness)</td><td>핵심 엣지가 통계적으로 우세 / 완충장치가 상위 허브</td><td>H1, H2</td></tr>
       <tr><td><b>모델</b><br>(예측)</td><td>GATED vs 빈도기반·DistMult baseline</td><td>MRR·Hits@k에서 baseline 유의 상회</td><td>H4</td></tr>
       <tr><td><b>외적</b><br>(전문가)</td><td>입학사정관·전문가 델파이/AHP, 가중치 비교</td><td>KG 도출 지표와 전문가 합의의 수렴(κ·CR)</td><td>H3</td></tr>
+      <tr><td><b>현장</b><br>(설문)</td><td>고등학생·교사 설문, 요인분석·IPA·집단비교</td><td>평가요소 중요도가 도출 지표와 수렴</td><td>H3, H5</td></tr>
       <tr><td><b>적용</b><br>(파일럿)</td><td>글로벌미래인재대학 기존 데이터로 후향 모의평가</td><td>지표 적용 시 성과 구분력 향상</td><td>H3, H4</td></tr>
     </tbody>
   </table>
@@ -395,8 +434,8 @@
   <div class="box key">
     <span class="tag">한 줄 요약</span>
     <p style="margin:0">자율전공제의 성패는 <strong>입구·과정·출구의 정합</strong>에 달려 있고, 우리는 그 정합을
-    <strong>뉴스·논문에서 자동 추출한 인과 지식그래프(GATED)</strong>로 설계·검증한다. 평가지표(소주제1)와 운영모델(소주제2)이
-    하나의 엔진에서 동시에 나온다.</p>
+    <strong>문헌·뉴스·현장 설문·전문가</strong> 네 갈래 증거의 <strong>삼각검증</strong>으로 설계·검증한다(방대한 텍스트를 종합하는 엔진은 GATED).
+    평가지표(소주제1)와 운영모델(소주제2)이 하나의 통합 설계에서 함께 나온다.</p>
   </div>
 
   <!-- ============ 부록: 일정/예산 ============ -->
@@ -405,7 +444,7 @@
     <caption>표 4. 6개월 추진 일정 (2026.9 ~ 2027.2)</caption>
     <thead><tr><th>월</th><th>9월</th><th>10월</th><th>11월</th><th>12월</th><th>1월</th><th>2월</th></tr></thead>
     <tbody>
-      <tr><td><b>과업</b></td><td>수집·필터링 설계</td><td>KG 구축</td><td>GATED 학습·허브분석</td><td>중간보고·델파이</td><td>지표·운영모델 확정</td><td>파일럿·최종보고</td></tr>
+      <tr><td><b>과업</b></td><td>설계·수집(문헌·뉴스)</td><td>KG 구축·설문 설계</td><td>GATED 학습·<b>설문 조사</b></td><td>설문 분석·중간보고·델파이</td><td>지표·운영모델 확정(AHP)</td><td>파일럿·최종보고</td></tr>
     </tbody>
   </table>
   <h3>9.1 연구진 구성 및 역할 분담</h3>
@@ -444,7 +483,7 @@
     <tbody>
       <tr><td>문헌 및 자료구입비</td><td>도서·논문 원문·데이터셋 구입</td><td style="text-align:right">1,500</td></tr>
       <tr><td>유인물 및 보고서 인쇄비</td><td>중간·최종 보고서, 설문지 인쇄</td><td style="text-align:right">800</td></tr>
-      <tr><td>조사 및 전산처리비</td><td><b>LLM(GPT) API 사용료 · 클라우드(Colab/서버) · 설문조사</b></td><td style="text-align:right">4,100</td></tr>
+      <tr><td>조사 및 전산처리비</td><td><b>설문조사(고등학생·교사) 사례비(기념품 5천원 이하) · LLM(GPT) API · 클라우드(Colab/서버)</b></td><td style="text-align:right">4,100</td></tr>
       <tr><td>회의비</td><td>연구회의·중간/최종보고 (식비+다과 5만원/회 이내)</td><td style="text-align:right">2,000</td></tr>
       <tr><td>자문비</td><td>전문가 델파이·AHP 패널 (20만원/인·회 이내)</td><td style="text-align:right">1,600</td></tr>
       <tr><td>임차료</td><td>장비·전산 사용료</td><td style="text-align:right">400</td></tr>
