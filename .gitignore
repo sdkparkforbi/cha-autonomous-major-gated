@@ -1,2 +1,16 @@
 __pycache__/
 *.pyc
+# build helpers & local artifacts
+_verify_*.pdf
+_chk_*.png
+_dump_*.txt
+lit_*.csv
+_search_summary.md
+search_lit.py
+# hwpx bundle (copied from skill)
+hwpxgen.py
+hwpx_bake.py
+hwpx_read.py
+hwpx_convert.py
+hwpx_edit.py
+_seed.hwpx
